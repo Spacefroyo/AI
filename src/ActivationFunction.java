@@ -4,6 +4,23 @@ public interface ActivationFunction {
     double der(double x);
 }
 
+class Linear implements ActivationFunction {
+    @Override
+    public double func(double x) {
+        return x;
+    }
+
+    @Override
+    public double inv(double x) {
+        return x;
+    }
+
+    @Override
+    public double der(double x) {
+        return 1;
+    }
+}
+
 class Sigmoid implements ActivationFunction {
     @Override
     public double func(double x) {
@@ -19,5 +36,22 @@ class Sigmoid implements ActivationFunction {
     public double der(double x) {
         double func = func(x);
         return func * (1 - func);
+    }
+}
+
+class ReLU implements ActivationFunction {
+    @Override
+    public double func(double x) {
+        return Math.max(0, x);
+    }
+
+    @Override
+    public double inv(double x) {
+        return x;
+    }
+
+    @Override
+    public double der(double x) {
+        return x < 0 ? 0 : 1;
     }
 }
